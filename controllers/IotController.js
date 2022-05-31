@@ -1,11 +1,14 @@
 const firebase = require('../db');
 const IotData = require('../models/IotData');
+const momemt = require('moment');
 const firestore = firebase.firestore();
 
 //POST Operation
 const addIot = async (req, res, next) => {
     try {
         const reqData = req.body;
+        reqData.Created = momemt().format('MMMM Do YYYY, h:mm:ss a');
+        console.log(reqData)
         await firestore.collection('IoTData').doc().set(reqData);
         res.send('Record saved successfuly');
     } catch (error) {
@@ -26,18 +29,13 @@ const getAlliotdata = async (req, res, next) => {
             dataObj.forEach(doc => {
                 const iotData = new IotData(
                     doc.id,
-                    doc.data().Satellitecount,
+                    doc.data().SatelliteCount,
                     doc.data().Latitude,
                     doc.data().Longitude,
                     doc.data().Altitude,
                     doc.data().Direction,
-                    doc.data().Year,
-                    doc.data().Month,
-                    doc.data().Day,
-                    doc.data().HH,
-                    doc.data().MM,
-                    doc.data().SS,
-                    doc.data().VehicleId,
+                    doc.data().VehicleID,
+                    doc.data().Created,
                 );
                 iotDataArray.push(iotData);
             });
