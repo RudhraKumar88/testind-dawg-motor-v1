@@ -11,11 +11,11 @@ const {addIot,
 const router = express.Router();
 
 //Setting Routes Path For Each Functionallity
-router.post('/iotdata', addIot);
-router.get('/iotdatas', getAlliotdata);
-router.get('/iotdata/:id', getIotdata);
-router.put('/iotdata/:id', updateIotdata);
-router.delete('/iotdata/:id', deleteIotdata);
+router.post('/postIoTData', addIot);
+router.get('/getIoTData', getAlliotdata);
+router.get('/getIoTData/:id', getIotdata);
+router.put('/updateIoTData/:id', updateIotdata);
+router.delete('/deleteIoT/:id', deleteIotdata);
 
 
 module.exports = {
